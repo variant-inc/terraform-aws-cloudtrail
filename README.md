@@ -1,5 +1,31 @@
 # Terraform CloudTrail trail module
 
+- [Terraform CloudTrail trail module](#terraform-cloudtrail-trail-module)
+  - [Input Variables](#input-variables)
+    - [name](#name)
+    - [enable_logging](#enable_logging)
+    - [s3_key_prefix](#s3_key_prefix)
+    - [s3_kms_key](#s3_kms_key)
+    - [sns_topic_name](#sns_topic_name)
+    - [include_global_service_events](#include_global_service_events)
+    - [is_multi_region_trail](#is_multi_region_trail)
+    - [is_organization_trail](#is_organization_trail)
+    - [enable_log_file_validation](#enable_log_file_validation)
+    - [event_selectors](#event_selectors)
+    - [advanced_event_selectors](#advanced_event_selectors)
+    - [insight_selector](#insight_selector)
+    - [lifecycle_rule](#lifecycle_rule)
+    - [force_destroy](#force_destroy)
+    - [bucket_policy](#bucket_policy)
+    - [enable_cloudwatch](#enable_cloudwatch)
+    - [cw_log_retention](#cw_log_retention)
+    - [cloudwatch_kms_key_id](#cloudwatch_kms_key_id)
+  - [Examples](#examples)
+    - [`main.tf`](#maintf)
+    - [`terraform.tfvars.json`](#terraformtfvarsjson)
+    - [`provider.tf`](#providertf)
+    - [`variables.tf`](#variablestf)
+    - [`outputs.tf`](#outputstf)
 
 ## Input Variables
 | Name     | Type    | Default   | Example     | Notes   |
