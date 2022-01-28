@@ -318,6 +318,7 @@ module "cloudtrail" {
   source = "github.com/variant-inc/terraform-aws-cloudtrail?ref=v1"
 
   name            = var.name
+  tags            = var.tags
   enable_logging  = var.enable_logging
   s3_key_prefix   = var.s3_key_prefix
   s3_kms_key      = var.s3_kms_key
