@@ -3,6 +3,7 @@
 - [Terraform CloudTrail trail module](#terraform-cloudtrail-trail-module)
   - [Input Variables](#input-variables)
     - [name](#name)
+    - [tags](#tags)
     - [enable_logging](#enable_logging)
     - [s3_key_prefix](#s3_key_prefix)
     - [s3_kms_key](#s3_kms_key)
@@ -31,6 +32,7 @@
 | Name     | Type    | Default   | Example     | Notes   |
 | -------- | ------- | --------- | ----------- | ------- |
 | name | string |  | "test-trail" |  |
+| tags | map(string) | {} | {"environment": "prod"} | |
 | enable_logging | bool | true | false |  |
 | s3_key_prefix | string | "" | "logs/" |  |
 | s3_kms_key | string | "" | "arn:aws:kms:us-east-1:319244236588:key/dfed962d-0968-42b4-ad36-7762dac7ca20" |  |
@@ -53,6 +55,17 @@
 Name of the CloudTrail trail
 ```json
 "name": "<trail name>"
+```
+
+### tags
+Tags for created bucket.
+```json
+"tags": {<map of tag keys and values>}
+```
+
+Default:
+```json
+"tags": {}
 ```
 
 ### enable_logging
@@ -335,6 +348,9 @@ module "cloudtrail" {
 ```json
 {
   "name": "test-trail",
+  "tags": {
+    "environment": "prod"
+  },
   "enable_logging": true,
   "s3_key_prefix": "logs/",
   "s3_kms_key": "arn:aws:kms:us-east-1:319244236588:key/dfed962d-0968-42b4-ad36-7762dac7ca20",

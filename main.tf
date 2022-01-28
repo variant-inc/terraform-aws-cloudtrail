@@ -2,6 +2,7 @@ module "aws_s3" {
   source = "github.com/variant-inc/terraform-aws-s3?ref=master"
 
   bucket_prefix  = format("%s-", var.name)
+  tags           = var.tags
   force_destroy  = var.force_destroy
   bucket_policy  = var.bucket_policy
   lifecycle_rule = var.lifecycle_rule
@@ -11,6 +12,7 @@ resource "aws_cloudwatch_log_group" "group" {
   count = var.enable_cloudwatch ? 1 : 0
 
   name              = format("aws-cloudtrail-logs-%s", var.name)
+  tags              = var.tags
   retention_in_days = var.cw_log_retention
   kms_key_id        = length(var.cloudwatch_kms_key_id) != 0 ? var.cloudwatch_kms_key_id : null
 }
@@ -19,6 +21,7 @@ resource "aws_iam_role" "cloudwatch" {
   count = var.enable_cloudwatch ? 1 : 0
 
   name = format("%s-cloudwatch-role", var.name)
+  tags = var.tags
   assume_role_policy = jsonencode({
     "Version" = "2012-10-17"
     "Statement" = [
@@ -54,6 +57,7 @@ resource "aws_iam_role" "cloudwatch" {
 
 resource "aws_cloudtrail" "cloudtrail" {
   name           = var.name
+  tags           = var.tags
   enable_logging = var.enable_logging
   s3_bucket_name = module.aws_s3.bucket_name
   s3_key_prefix  = var.s3_key_prefix

@@ -3,6 +3,12 @@ variable "name" {
   type        = string
 }
 
+variable "tags" {
+  type        = map(string)
+  description = "Tags for S3 bucket"
+  default     = {}
+}
+
 variable "enable_logging" {
   description = "Enables logging on CloudTrail trail."
   type        = bool
